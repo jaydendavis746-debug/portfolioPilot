@@ -15,13 +15,16 @@ class Goal {
     this.target_date = target_date;
     this.saved = Number(saved);
     this.remaining = Math.max(this.target_amount - this.saved, 0);
-    this.percent = Math.min(Math.round((this.saved / this.target_amount) * 100), 100);
+    this.percent = Math.min(
+      Math.round((this.saved / this.target_amount) * 100),
+      100,
+    );
   }
 
   static async getAll(userId) {
     const response = await db.query(
       `${SELECT_SQL} WHERE g.user_id = $1 GROUP BY g.goal_id ORDER BY g.created_at;`,
-      [userId]
+      [userId],
     );
     if (response.rows.length === 0) {
       throw new Error("No goals available");
@@ -32,7 +35,7 @@ class Goal {
   static async getById(goalId, userId) {
     const response = await db.query(
       `${SELECT_SQL} WHERE g.goal_id = $1 AND g.user_id = $2 GROUP BY g.goal_id;`,
-      [goalId, userId]
+      [goalId, userId],
     );
     if (response.rows.length !== 1) {
       throw new Error("Unable to locate goal");
