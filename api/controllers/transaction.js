@@ -5,8 +5,8 @@ const DEMO_USER_ID = 1
 async function index(req, res) {
   try {
     const { type, category } = req.query;
-    if (type && !["income", "expense".includes(type)]) {
-      return res.staus(400).json({ error: "type must be income or expense" });
+    if (type && !["income", "expense"].includes(type)) {
+      return res.status(400).json({ error: "type must be income or expense" });
     }
 
     const categoryId = category ? Number(category) : undefined;
