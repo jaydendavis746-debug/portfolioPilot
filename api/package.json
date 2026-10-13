@@ -12,11 +12,21 @@
     "pg": "^8.23.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "nodemon": "^3.1.14",
+    "jest": "^30.5.0",
+    "supertest": "^7.2.2"
   },
   "scripts": {
     "start": "node index.js",
-    "setup-db": "node ./db/setup.js"
+    "dev": "nodemon -L index.js",
+    "setup-db": "node ./db/setup.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathIgnorePatterns config.js --detectOpenHandles --runInBand --coverage",
+    "uTests": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPatterns=unit",
+    "iTests": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPatterns=integration --testPathIgnorePatterns config.js --detectOpenHandles --runInBand"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {}
   },
   "keywords": [],
   "author": "",

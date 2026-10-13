@@ -1,4 +1,4 @@
-import Transaction from "../models/transaction";
+import Transaction from "../models/transaction.js";
 
 const DEMO_USER_ID = 1
 
@@ -14,7 +14,7 @@ async function index(req, res) {
       return res.status(400).json({ error: "category must be a number" });
     }
 
-    const transactions = await Transaction.getAll(DEMO_USER_ID, { type, categoreId });
+    const transactions = await Transaction.getAll(DEMO_USER_ID, { type, categoryId });
     res.status(200).json(transactions);
   } catch (err) {
     res.status(404).json({ error: err.message });
