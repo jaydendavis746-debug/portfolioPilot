@@ -15,7 +15,6 @@ const money = (n: number) =>
 
 export default function HomeScreen() {
   const user = useAuth((s) => s.currentUser);
-  const logout = useAuth((s) => s.logout);
 
   const income = recent.filter((t) => t.amount > 0).reduce((a, t) => a + t.amount, 0);
   const spent = recent.filter((t) => t.amount < 0).reduce((a, t) => a + t.amount, 0);
@@ -29,7 +28,7 @@ export default function HomeScreen() {
             <Text style={s.muted}>Welcome back</Text>
             <Text style={s.title}>{user?.name ?? "there"}</Text>
           </View>
-          <Pressable onPress={logout}><Text style={s.link}>Log out</Text></Pressable>
+
         </View>
 
         <View style={s.balanceCard}>
